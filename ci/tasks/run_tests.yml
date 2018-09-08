@@ -11,4 +11,5 @@ inputs:
 - name: spring-testing
 
 run:
+  user: root
   path: spring-testing/ci/scripts/run_tests.sh
