@@ -18,9 +18,9 @@ RUN apt-get install -y --no-install-recommends software-properties-common
 RUN add-apt-repository -y ppa:openjdk-r/ppa
 RUN apt-get update
 RUN apt-get install -y openjdk-8-jdk
-RUN apt-get install -y openjdk-8-jre
-RUN update-alternatives --config java
-RUN update-alternatives --config javac
+#RUN apt-get install -y openjdk-8-jre
+#RUN update-alternatives --config java
+#RUN update-alternatives --config javac
 
 #Install Google Chrome
 #https://www.google.com/linuxrepositories/
@@ -33,9 +33,9 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
     && rm /etc/apt/sources.list.d/google-chrome.list \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
-RUN Xvfb :99 -ac -screen 0 1280x1024x24 &
-ENV DISPLAY=:99
-RUN nice -n 10 x11vnc 2>&1 &
+#RUN Xvfb :99 -ac -screen 0 1280x1024x24 &
+#ENV DISPLAY=:99
+#RUN nice -n 10 x11vnc 2>&1 &
 
 #============================== # Scripts to run Selenium Node #==============================
 USER seluser
