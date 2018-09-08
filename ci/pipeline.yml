@@ -12,4 +12,4 @@ jobs:
   - get: spring-testing
     trigger: true
   - task: run the test suite
-    file: hello_hapi/ci/tasks/run_tests.yml
+    file: spring-testing/ci/tasks/run_tests.yml
