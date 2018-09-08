@@ -32,7 +32,10 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
         ${CHROME_VERSION:-google-chrome-stable} \
     && rm /etc/apt/sources.list.d/google-chrome.list \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
-RUN Xvfb :0 -ac -screen 0 1024x768x24 &
+
+RUN Xvfb :99 -ac -screen 0 1280x1024x24 &
+ENV DISPLAY=:99
+RUN nice -n 10 x11vnc 2>&1 &
 
 #============================== # Scripts to run Selenium Node #==============================
 USER seluser
