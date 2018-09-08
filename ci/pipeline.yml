@@ -1,0 +1,13 @@
+---
+resources:
+- name: spring-testing
+  type: git
+  source: &repo-source
+    uri: https://github.com/abangser/spring-testing
+    branch: master
+
+jobs:
+- name: Build
+  plan:
+  - get: spring-testing
+    trigger: true
