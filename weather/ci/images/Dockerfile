@@ -19,4 +19,4 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
     && rm /etc/apt/sources.list.d/google-chrome.list \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
-ENV WEATHER_API=88cf3ca81d02c8d4346bac7651563840
+ENV WEATHER_API="88cf3ca81d02c8d4346bac7651563840"
