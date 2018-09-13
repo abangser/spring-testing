@@ -1,0 +1,15 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: abangser/java-chrome
+    tag: latest
+
+inputs:
+- name: spring-testing
+
+run:
+  user: root
+  path: spring-testing/ci/scripts/run_tests.sh
