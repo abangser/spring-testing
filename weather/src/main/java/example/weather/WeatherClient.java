@@ -35,4 +35,14 @@ public class WeatherClient {
             return Optional.empty();
         }
     }
+
+    public Optional<WeatherResponse> fetchWeather(String time) {
+        String url = String.format("%s/%s/%s,%s,%s", weatherServiceUrl, weatherServiceApiKey, LATITUDE, LONGITUDE, time);
+
+        try {
+            return Optional.ofNullable(restTemplate.getForObject(url, WeatherResponse.class));
+        } catch (RestClientException e) {
+            return Optional.empty();
+        }
+    }
 }

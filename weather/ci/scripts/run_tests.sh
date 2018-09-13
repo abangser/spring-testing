@@ -2,5 +2,5 @@
 
 set -e -u -x
 
-cd spring-testing
+cd spring-testing/weather
 ./gradlew build

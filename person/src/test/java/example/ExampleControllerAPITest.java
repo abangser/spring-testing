@@ -2,8 +2,6 @@ package example;
 
 import example.person.Person;
 import example.person.PersonRepository;
-import example.weather.WeatherResponse;
-import example.weather.WeatherClient;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +27,6 @@ public class ExampleControllerAPITest {
     @MockBean
     private PersonRepository personRepository;
 
-    @MockBean
-    private WeatherClient weatherClient;
-
     @Test
     public void shouldReturnHelloWorld() throws Exception {
         mockMvc.perform(get("/hello"))
@@ -47,15 +42,5 @@ public class ExampleControllerAPITest {
         mockMvc.perform(get("/hello/Pan"))
                 .andExpect(content().string("Hello Peter Pan!"))
                 .andExpect(status().is2xxSuccessful());
-    }
-
-    @Test
-    public void shouldReturnCurrentWeather() throws Exception {
-        WeatherResponse weatherResponse = new WeatherResponse("Hamburg, 8°C raining");
-        given(weatherClient.fetchWeather()).willReturn(Optional.of(weatherResponse));
-
-        mockMvc.perform(get("/weather"))
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(content().string("Hamburg, 8°C raining"));
     }
 }

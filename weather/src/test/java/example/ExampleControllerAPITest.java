@@ -1,7 +1,5 @@
 package example;
 
-import example.person.Person;
-import example.person.PersonRepository;
 import example.weather.WeatherResponse;
 import example.weather.WeatherClient;
 import org.junit.Test;
@@ -27,27 +25,7 @@ public class ExampleControllerAPITest {
     private MockMvc mockMvc;
 
     @MockBean
-    private PersonRepository personRepository;
-
-    @MockBean
     private WeatherClient weatherClient;
-
-    @Test
-    public void shouldReturnHelloWorld() throws Exception {
-        mockMvc.perform(get("/hello"))
-                .andExpect(content().string("Hello World!"))
-                .andExpect(status().is2xxSuccessful());
-    }
-
-    @Test
-    public void shouldReturnFullName() throws Exception {
-        Person peter = new Person("Peter", "Pan");
-        given(personRepository.findByLastName("Pan")).willReturn(Optional.of(peter));
-
-        mockMvc.perform(get("/hello/Pan"))
-                .andExpect(content().string("Hello Peter Pan!"))
-                .andExpect(status().is2xxSuccessful());
-    }
 
     @Test
     public void shouldReturnCurrentWeather() throws Exception {

@@ -4,7 +4,7 @@ resources:
   type: git
   source: &repo-source
     uri: https://github.com/abangser/spring-testing
-    branch: master
+    branch: microsvc-monorepo
 
 jobs:
 - name: Build
@@ -12,4 +12,4 @@ jobs:
   - get: spring-testing
     trigger: true
   - task: run the test suite
-    file: spring-testing/ci/tasks/run_tests.yml
+    file: spring-testing/weather/ci/tasks/run_tests.yml

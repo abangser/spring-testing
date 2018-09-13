@@ -2,8 +2,6 @@ package example;
 
 import example.person.Person;
 import example.person.PersonRepository;
-import example.weather.WeatherResponse;
-import example.weather.WeatherClient;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -23,14 +21,11 @@ public class ExampleControllerTest {
     @Mock
     private PersonRepository personRepository;
 
-    @Mock
-    private WeatherClient weatherClient;
-
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        subject = new ExampleController(personRepository, weatherClient);
+        subject = new ExampleController(personRepository);
     }
 
     @Test
@@ -55,24 +50,5 @@ public class ExampleControllerTest {
         String greeting = subject.hello("Pan");
 
         assertThat(greeting, is("Who is this 'Pan' you're talking about?"));
-    }
-
-    @Test
-    public void shouldReturnWeatherClientResult() throws Exception {
-        WeatherResponse weatherResponse = new WeatherResponse("Hamburg, 8°C raining");
-        given(weatherClient.fetchWeather()).willReturn(Optional.of(weatherResponse));
-
-        String weather = subject.weather();
-
-        assertThat(weather, is("Hamburg, 8°C raining"));
-    }
-
-    @Test
-    public void shouldReturnErrorMessageIfWeatherClientIsUnavailable() throws Exception {
-        given(weatherClient.fetchWeather()).willReturn(Optional.empty());
-
-        String weather = subject.weather();
-
-        assertThat(weather, is("Sorry, I couldn't fetch the weather for you :("));
     }
 }

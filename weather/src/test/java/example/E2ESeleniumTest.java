@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -19,8 +20,10 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class HelloE2ESeleniumTest {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+        properties = {"weather.url=https://api.darksky.net/forecast",
+                "weather.api_secret=${API_SECRET_KEY}"})
+public class E2ESeleniumTest {
 
     private WebDriver driver;
     private static ChromeOptions options;
@@ -54,11 +57,11 @@ public class HelloE2ESeleniumTest {
     }
 
     @Test
-    public void helloPageHasTextHelloWorld(){
-        driver.navigate().to(String.format("http://localhost:%s/hello", port));
+    public void weatherPageShowsWeatherAtSpecificTime(){
+        driver.navigate().to(String.format("http://localhost:%s/weather/255657600", port));
 
         WebElement body = driver.findElement(By.tagName("body"));
 
-        assertThat(body.getText(), containsString("Hello World!"));
+        assertThat(body.getText(), containsString("Overcast"));
     }
 }

@@ -12,4 +12,4 @@ inputs:
 
 run:
   user: root
-  path: spring-testing/ci/scripts/run_tests.sh
+  path: spring-testing/weather/ci/scripts/run_tests.sh
