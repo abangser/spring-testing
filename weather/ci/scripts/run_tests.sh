@@ -3,4 +3,4 @@
 set -e -u -x
 
 cd spring-testing/weather
-./gradlew build
+./gradlew build --debug
