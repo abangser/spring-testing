@@ -58,9 +58,7 @@ public class E2ESeleniumTest {
 
     @Test
     public void weatherPageShowsWeatherAtSpecificTime(){
-        System.out.println(String.format("http://localhost:%s/weather/255657600", port));
         driver.navigate().to(String.format("http://localhost:%s/weather/255657600", port));
-
 
         WebElement body = driver.findElement(By.tagName("body"));
 

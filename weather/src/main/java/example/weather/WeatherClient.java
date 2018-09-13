@@ -38,7 +38,6 @@ public class WeatherClient {
 
     public Optional<WeatherResponse> fetchWeather(String time) {
         String url = String.format("%s/%s/%s,%s,%s", weatherServiceUrl, weatherServiceApiKey, LATITUDE, LONGITUDE, time);
-        System.out.println("fetchWeather(time) URL: " + url);
 
         try {
             return Optional.ofNullable(restTemplate.getForObject(url, WeatherResponse.class));
