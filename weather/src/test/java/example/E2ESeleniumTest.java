@@ -22,7 +22,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = {"weather.url=https://api.darksky.net/forecast",
-                "weather.api_secret=${API_SECRET_KEY}"})
+                "weather.api_secret=${WEATHER_API}"})
 public class E2ESeleniumTest {
 
     private WebDriver driver;
